@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="output.css" />
+  </head>
+  <body>
+    <div class="h-screen flex justify-center items-center">
+      <div
+        class="relative rounded-md shadow-lg bg-gradient-to-tl from-slate-50 to-slate-300 h-auto w-[400px] flex flex-col gap-8 p-6"
+      >
+        <!-- Card -->
+        <div class="group h-[200px] relative">
+          <div
+            id="front"
+            class="[backface-visibility:hidden] [transform-style:preserve-3d] [transform:rotateY(180deg)] transition-all duration-500 shadow-lg relative rounded-lg h-full w-full bg-gradient-to-br from-sky-900 to-cyan-500"
+          >
+            <span class="text-white absolute top-2 right-4 text-2xl font-bold"
+              >Revolut</span
+            >
+            <span
+              class="text-white font-extrabold text-3xl absolute top-40 -right-[-16px]"
+              >VISA</span
+            >
+            <span
+              id="card-number-box"
+              class="text-white text-2xl font-bold absolute top-24 left-10 tracking-wider"
+              >1234 5678 9101 5609</span
+            >
+            <div
+              id="back"
+              class="[transform:rotateY(180deg)] [backface-visibility:hidden] relative h-full w-full bg-gradient-to-br from-sky-900 to-cyan-500 rounded-lg shadow-lg mt-0"
+            >
+              <span class="absolute top-6 w-[350px] h-10 bg-gray-800"></span>
+              <span
+                id="cvv-box"
+                class="flex items-center justify-center absolute top-20 ml-4 w-[200px] h-10 bg-white"
+                >CVV</span
+              >
+            </div>
+            <img
+              src="/chip.png"
+              alt="bank card ship"
+              class="w-10 h-10 absolute top-10 left-10"
+            />
+            <span
+              id="exp-date-box"
+              class="absolute bottom-12 right-40 text-white"
+              >07/27</span
+            >
+            <span
+              id="card-holder-name"
+              class="absolute bottom-4 left-5 text-white"
+              >Mr. El Mehdi</span
+            >
+          </div>
+        </div>
+        <!-- Personal details -->
+        <div class="grid grid-rows-3 grid-cols-2 gap-3">
+          <div class="col-span-2">
+            <label
+              >Name<br />
+              <input
+                id="card-holder-input"
+                class="h-8 w-full flex justify-center items-center p-2 border border-cyan-500"
+                placeholder="Name"
+                type="text"
+              />
+            </label>
+          </div>
+          <div class="col-span-2">
+            <label
+              >Card Number<br />
+              <input
+                id="card-number-input"
+                class="group h-8 w-full p-2 flex justify-center items-center border border-cyan-500"
+                type="text"
+                placeholder="0123 4567 8910 1112"
+                maxlength="19"
+              />
+            </label>
+          </div>
+          <div class="col-span-1">
+            <label
+              >Expiration(mm/yy)<br />
+              <input
+                id="exp-date-input"
+                class="h-8 w-full p-2 flex justify-center items-center border border-cyan-500"
+                type="text"
+                placeholder="06/24"
+                maxlength="5"
+              />
+            </label>
+          </div>
+          <div class="col-span-1">
+            <label
+              >Security code
+              <input
+                id="cvv-input"
+                class="h-8 w-full p-2 flex justify-center items-center border border-cyan-500"
+                type="text"
+                placeholder="123"
+                maxlength="3"
+              />
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.getElementById("card-number-input").oninput = () => {
+        document.getElementById("card-number-box").innerText =
+          document.getElementById("card-number-input").value;
+      };
+
+      document.getElementById("card-holder-input").oninput = () => {
+        document.getElementById("card-holder-name").innerText =
+          document.getElementById("card-holder-input").value;
+      };
+
+      document.getElementById("exp-date-input").oninput = () => {
+        document.getElementById("exp-date-box").innerText =
+          document.getElementById("exp-date-input").value;
+      };
+
+      document.getElementById("cvv-input").onmouseenter = () => {
+        document.getElementById("front").style.transform = "rotateY(-180deg)";
+        document.getElementById("back").style.transform = "rotateY(180deg)";
+      };
+
+      document.getElementById("cvv-input").onmouseleave = () => {
+        document.getElementById("front").style.transform = "rotateY(0deg)";
+        document.getElementById("back").style.transform = "rotateY(180deg)";
+      };
+
+      document.getElementById("cvv-input").oninput = () => {
+        document.getElementById("cvv-box").innerText =
+          document.getElementById("cvv-input").value;
+      };
+    </script>
+  </body>
+</html>
